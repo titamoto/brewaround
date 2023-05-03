@@ -6,11 +6,9 @@ findBreweryForm.addEventListener("submit", (e) => {
     if (document.getElementsByClassName("card") != undefined) {
         Array.from(document.getElementsByClassName("card")).forEach(card => card.remove())
     }
-    console.log((document.getElementsByClassName("card")))
     const searchResult = findBrewery(e.target["find-brewery-input"].value);
-    searchResult.then(foundBreweries => {
-        return foundBreweries.forEach(brewery => showBrewery(brewery))
-    });
+    searchResult
+        .then(foundBreweries => { return foundBreweries.forEach(brewery => showBrewery(brewery)) });
 
 });
 
@@ -22,7 +20,18 @@ function findBrewery(input) {
     return fetch("https://api.openbrewerydb.org/breweries")
         .then(response => response.json())
         .then(breweries => {
-            return breweries.filter(brewery => brewery.name.toLowerCase().includes(input.toLowerCase()));
+            return breweries.filter(brewery => {
+                if (document.getElementById("by-name").checked) {
+                    return brewery.name.toLowerCase().includes(input.toLowerCase())
+                }
+                else if (document.getElementById("by-city").checked) {
+                    return brewery.city.toLowerCase().includes(input.toLowerCase())
+                }
+                else if (document.getElementById("by-state").checked) {
+                    return brewery.state.toLowerCase().includes(input.toLowerCase())
+                }
+            });
+
         })
         .catch(error => console.log(error));
 }
