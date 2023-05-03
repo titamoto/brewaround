@@ -3,11 +3,15 @@ const locationButton = document.getElementById("location-button");
 locationButton.addEventListener("click", getLocation);
 findBreweryForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (document.getElementsByClassName("card") != undefined) {
+        Array.from(document.getElementsByClassName("card")).forEach(card => card.remove())
+    }
+    console.log((document.getElementsByClassName("card")))
     const searchResult = findBrewery(e.target["find-brewery-input"].value);
     searchResult.then(foundBreweries => {
         return foundBreweries.forEach(brewery => showBrewery(brewery))
     });
-    
+
 });
 
 function getLocation() {
@@ -19,9 +23,9 @@ function findBrewery(input) {
         .then(response => response.json())
         .then(breweries => {
             return breweries.filter(brewery => brewery.name.toLowerCase().includes(input.toLowerCase()));
-          })
-          .catch(error => console.log(error));
-    }
+        })
+        .catch(error => console.log(error));
+}
 
 function showBrewery(brewery) {
 
