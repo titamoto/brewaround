@@ -23,18 +23,6 @@ function findBrewery(input) {
           .catch(error => console.log(error));
     }
 
-    // function findBrewery(input) {
-    //     fetch("https://api.openbrewerydb.org/breweries")
-    //         .then(response => response.json())
-    //        .then(breweries => {
-    //             const array = [];
-    //             for (const brewery of breweries) {
-    //                 if (brewery.name.includes(input) === true) {
-    //                 array.push(brewery) } 
-    //             }
-    //         })
-    //     }
-
 function showBrewery(brewery) {
 
     const card = document.createElement("div");
@@ -43,11 +31,11 @@ function showBrewery(brewery) {
     breweryName.textContent = brewery.name;
     const city = document.createElement("h5");
     city.textContent = brewery.city;
-    const state = document.createElement("h6");
+    const state = document.createElement("h5");
     state.textContent = brewery.state;
     const address = document.createElement("p");
     address.textContent = brewery.address;
 
-    document.getElementById("search-result").append(card);
+    document.querySelector("main").append(card);
     card.append(breweryName, city, state, address);
 }
