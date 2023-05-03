@@ -3,7 +3,11 @@ const locationButton = document.getElementById("location-button");
 locationButton.addEventListener("click", getLocation);
 findBreweryForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    findBrewery(e.target["find-brewery-input"].value)
+    const searchResult = findBrewery(e.target["find-brewery-input"].value);
+    searchResult.then(foundBreweries => {
+        return foundBreweries.forEach(brewery => showBrewery(brewery))
+    });
+    
 });
 
 function getLocation() {
@@ -11,13 +15,29 @@ function getLocation() {
 }
 
 function findBrewery(input) {
-    fetch("https://api.openbrewerydb.org/breweries")
+    return fetch("https://api.openbrewerydb.org/breweries")
         .then(response => response.json())
-        .then(breweries => breweries.filter(brewery => showBrewery(brewery)));
-}
+        .then(breweries => {
+            return breweries.filter(brewery => brewery.name.toLowerCase().includes(input.toLowerCase()));
+          })
+          .catch(error => console.log(error));
+    }
+
+    // function findBrewery(input) {
+    //     fetch("https://api.openbrewerydb.org/breweries")
+    //         .then(response => response.json())
+    //        .then(breweries => {
+    //             const array = [];
+    //             for (const brewery of breweries) {
+    //                 if (brewery.name.includes(input) === true) {
+    //                 array.push(brewery) } 
+    //             }
+    //         })
+    //     }
 
 function showBrewery(brewery) {
-    const card = document.createElement("span");
+
+    const card = document.createElement("div");
     card.className = "card";
     const breweryName = document.createElement("h4");
     breweryName.textContent = brewery.name;
@@ -28,7 +48,6 @@ function showBrewery(brewery) {
     const address = document.createElement("p");
     address.textContent = brewery.address;
 
+    document.getElementById("search-result").append(card);
     card.append(breweryName, city, state, address);
-    document.append(card);
-    
 }
