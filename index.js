@@ -47,8 +47,12 @@ function showBrewery(brewery) {
     const state = document.createElement("h5");
     state.textContent = brewery.state;
     const address = document.createElement("p");
-    address.textContent = brewery.address;
+    address.textContent = brewery.address_1;
+    const website = document.createElement("a");
+    website.textContent = brewery.website_url;
+    website.href = brewery.website_url;
+    website.target = "_blank";
 
     document.querySelector("main").append(card);
-    card.append(breweryName, city, state, address);
+    card.append(breweryName, city, state, address, website);
 }
