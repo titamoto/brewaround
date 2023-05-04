@@ -8,6 +8,14 @@ body {
     place-content: center;
   }
 
+form {
+  margin-left: 40px;
+}
+
+h1 {
+  margin-left: 40px;
+}
+
   #radio-buttons {
     margin-top: 5px;
   }

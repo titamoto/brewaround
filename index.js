@@ -3,7 +3,7 @@ const locationButton = document.getElementById("location-button");
 locationButton.addEventListener("click", getLocation);
 findBreweryForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (document.getElementsByClassName("card") != undefined) {
+    if (document.getElementsByClassName("card") !== undefined) {
         Array.from(document.getElementsByClassName("card")).forEach(card => card.remove())
     }
     const searchResult = findBrewery(e.target["find-brewery-input"].value);
@@ -46,6 +46,10 @@ function showBrewery(brewery) {
     city.textContent = brewery.city;
     const state = document.createElement("h5");
     state.textContent = brewery.state;
+    
+    document.querySelector("main").append(card);
+    card.append(breweryName, city, state);
+
     const address = document.createElement("p");
     address.textContent = brewery.address_1;
     const website = document.createElement("a");
@@ -53,6 +57,12 @@ function showBrewery(brewery) {
     website.href = brewery.website_url;
     website.target = "_blank";
 
-    document.querySelector("main").append(card);
-    card.append(breweryName, city, state, address, website);
+    card.addEventListener('click', () => {
+        if (card.querySelector('a') != undefined || card.querySelector('p') != undefined) {
+            card.querySelector('a').remove();
+            card.querySelector('p').remove();
+            console.log("there are a and p")   
+        } else {
+        card.append(address, website); }
+    })
 }
