@@ -8,8 +8,25 @@ body {
     place-content: center;
   }
 
+button {
+  margin-left: 10px;
+  min-height: 35px;
+  border-radius: 5px;
+}
+
+#find-brewery-input {
+  min-height: 35px;
+  border-radius: 5px;
+}
+
 form {
   margin-left: 40px;
+}
+
+#submit {
+  margin-left: 5px;
+  min-height: 35px;
+  border-radius: 5px;
 }
 
 h1 {

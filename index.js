@@ -13,7 +13,30 @@ findBreweryForm.addEventListener("submit", (e) => {
 });
 
 function getLocation() {
-    navigator.geolocation.getCurrentPosition(position => console.log(position.coords.latitude + " " + position.coords.longitude))
+    navigator.geolocation.getCurrentPosition(position => {
+        const userPosition = {
+            userLat : position.coords.latitude,
+            userLon : position.coords.longitude }})
+            fetch("https://api.openbrewerydb.org/breweries")
+            .then(response => response.json())
+            .then(breweries => {
+                breweries.forEach(brewery => {
+                    //brewery.latitude
+                    //brewery.latitude
+                    const distArray = [];
+                    const radLat1 = Math.PI * userPosition.userLat/180;
+                    const radLat2 = Math.PI * userPosition.userLon/180;
+                    const theta = brewery.longitude - userPosition.userLon;
+                    const radTheta = Math.PI * theta/180;
+                    const dist = Math.sin(radLat1) * Math.sin(radLat2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.cos(radTheta);
+                    if (dist > 1) { dist = 1;}
+                    dist = Math.acos(dist);
+                    dist = dist * 180/Math.PI;
+                    dist = dist * 60 * 1.1515; 
+                    distArray.push(dist);
+                })
+    
+    })
 }
 
 function findBrewery(input) {
@@ -46,7 +69,7 @@ function showBrewery(brewery) {
     city.textContent = brewery.city;
     const state = document.createElement("h5");
     state.textContent = brewery.state;
-    
+
     document.querySelector("main").append(card);
     card.append(breweryName, city, state);
 
@@ -61,8 +84,8 @@ function showBrewery(brewery) {
         if (card.querySelector('a') != undefined || card.querySelector('p') != undefined) {
             card.querySelector('a').remove();
             card.querySelector('p').remove();
-            console.log("there are a and p")   
         } else {
-        card.append(address, website); }
+            card.append(address, website);
+        }
     })
 }
