@@ -15,27 +15,31 @@ findBreweryForm.addEventListener("submit", (e) => {
 function getLocation() {
     navigator.geolocation.getCurrentPosition(position => {
         const userPosition = {
-            userLat : position.coords.latitude,
-            userLon : position.coords.longitude }})
-            fetch("https://api.openbrewerydb.org/breweries")
+            userLat: position.coords.latitude,
+            userLon: position.coords.longitude
+        }
+        fetch("https://api.openbrewerydb.org/breweries")
             .then(response => response.json())
             .then(breweries => {
-                breweries.forEach(brewery => {
-                    //brewery.latitude
-                    //brewery.latitude
+                
+                breweries.forEach(function getIndexOfClosestBrewery(brewery) {
                     const distArray = [];
-                    const radLat1 = Math.PI * userPosition.userLat/180;
-                    const radLat2 = Math.PI * userPosition.userLon/180;
+                    const radLat1 = Math.PI * userPosition.userLat / 180;
+                    const radLat2 = Math.PI * userPosition.userLon / 180;
                     const theta = brewery.longitude - userPosition.userLon;
-                    const radTheta = Math.PI * theta/180;
-                    const dist = Math.sin(radLat1) * Math.sin(radLat2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.cos(radTheta);
-                    if (dist > 1) { dist = 1;}
+                    const radTheta = Math.PI * theta / 180;
+                    let dist = Math.sin(radLat1) * Math.sin(radLat2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.cos(radTheta);
+                    if (dist > 1) { dist = 1; }
                     dist = Math.acos(dist);
-                    dist = dist * 180/Math.PI;
-                    dist = dist * 60 * 1.1515; 
+                    dist = dist * 180 / Math.PI;
+                    dist = dist * 60 * 1.1515;
                     distArray.push(dist);
+                    return distArray.indexOf(Math.min(distArray));
+                    
                 })
-    
+                console.log (breweries[getIndexOfClosestBrewery(brewery)].name);
+            })
+  
     })
 }
 
