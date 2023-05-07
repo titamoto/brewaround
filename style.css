@@ -14,6 +14,11 @@ body {
     place-content: center;
   }
 
+#top {
+  place-content: center;
+  display: grid;
+}
+
 button {
   min-height: 35px;
   border-radius: 5px;
@@ -74,11 +79,15 @@ main {
       box-shadow: var(--shadow-4);
     }
   }
+
+  .card {
+    animation: var(--animation-fade-in) forwards;
+  }
   
 .card > h5 {
     line-height: var(--font-lineheight-1);
   }
 
-  h4, h5 {
+  h1, h4, h5 {
     color: var(--text-5);
   }

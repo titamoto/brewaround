@@ -69,7 +69,7 @@ function findBrewery(input) {
 function showBrewery(brewery) {
 
     const card = document.createElement("div");
-    card.className = "card";
+    card.classList.add("card", "loaded");
     const breweryName = document.createElement("h4");
     breweryName.textContent = brewery.name;
     const city = document.createElement("h5");
