@@ -21,7 +21,6 @@ function showClosestBrewery() {
             userLat: position.coords.latitude,
             userLon: position.coords.longitude
         }
-        console.log(userPosition);
         fetch("https://api.openbrewerydb.org/breweries")
             .then(response => response.json())
             .then(breweries => {
@@ -37,15 +36,13 @@ function showClosestBrewery() {
                     dist = dist * 180 / Math.PI;
                     dist = dist * 60 * 1.1515;
                     return distArray.push(dist);
-
-
                 })
                 const closestBrewery = breweries[distArray.indexOf(Math.min(...distArray))];
                 showBrewery(closestBrewery);
             })
-            .catch(error => console.log(error));
+            .catch(error => errorMessage() + error);
     },
-        error => console.log(error));
+        error => errorMessage() + error);
 
 }
 
@@ -66,7 +63,7 @@ function findBrewery(input) {
             });
 
         })
-        .catch(error => console.log(error));
+        .catch(error => errorMessage() + error);
 }
 
 function showBrewery(brewery) {
@@ -98,4 +95,11 @@ function showBrewery(brewery) {
             card.append(address, website);
         }
     })
+}
+
+function errorMessage() {
+    const errorMsg = document.createElement("h4");
+    errorMsg.textContent = "Sorry, no beer for ya :(";
+    document.querySelector("main").append(errorMsg);
+
 }
