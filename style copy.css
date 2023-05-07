@@ -1,11 +1,13 @@
+@import "https://unpkg.com/open-props";
+@import "https://unpkg.com/open-props/normalize.min.css";
+
+
 body {
-    font-family:Arial, Helvetica, sans-serif;
     display: grid;
     place-content: center;
   }
 
 button {
-  /* width: 15em; */
   min-height: 35px;
   border-radius: 5px;
   margin-left: 40px;
@@ -45,23 +47,23 @@ main {
     flex-flow: row wrap;
     align-items: flex-start;
     justify-content: space-around;
-    max-inline-size: 100rem;
-    gap: 40px;
-    padding: 10px;
+    max-inline-size: calc(var(--size-content-1) * 4);
+    gap: var(--size-5);
+    padding: var(--size-5);
   }
   
 .card {
-    flex-basis: auto;
+    flex-basis: var(--size-content-1);
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    background: scroll;
-    border: 1px solid;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 2px;
+    gap: var(--size-2);
+    background: var(--surface-3);
+    border: 1px solid var(--surface-1);
+    padding: var(--size-4);
+    border-radius: var(--radius-3);
+    box-shadow: var(--shadow-2);
   }
   
 .card > h5 {
-    line-height:normal;
+    line-height: var(--font-lineheight-1);
   }

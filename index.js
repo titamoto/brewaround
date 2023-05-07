@@ -101,5 +101,4 @@ function errorMessage() {
     const errorMsg = document.createElement("h4");
     errorMsg.textContent = "Sorry, no beer for ya :(";
     document.querySelector("main").append(errorMsg);
-
 }
