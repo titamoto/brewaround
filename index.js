@@ -1,6 +1,6 @@
 const findBreweryForm = document.getElementById("find-brewery");
 const locationButton = document.getElementById("location-button");
-locationButton.addEventListener("click", getLocation);
+locationButton.addEventListener("click", showClosestBrewery);
 findBreweryForm.addEventListener("submit", (e) => {
     e.preventDefault();
     if (document.getElementsByClassName("card") !== undefined) {
@@ -12,20 +12,20 @@ findBreweryForm.addEventListener("submit", (e) => {
 
 });
 
-function getLocation() {
+function showClosestBrewery() {
     navigator.geolocation.getCurrentPosition(position => {
         const userPosition = {
             userLat: position.coords.latitude,
             userLon: position.coords.longitude
         }
+        console.log(userPosition);
         fetch("https://api.openbrewerydb.org/breweries")
             .then(response => response.json())
             .then(breweries => {
-                
-                breweries.forEach(function getIndexOfClosestBrewery(brewery) {
-                    const distArray = [];
+                const distArray = [];
+                breweries.forEach(brewery => {
                     const radLat1 = Math.PI * userPosition.userLat / 180;
-                    const radLat2 = Math.PI * userPosition.userLon / 180;
+                    const radLat2 = Math.PI * brewery.latitude / 180;
                     const theta = brewery.longitude - userPosition.userLon;
                     const radTheta = Math.PI * theta / 180;
                     let dist = Math.sin(radLat1) * Math.sin(radLat2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.cos(radTheta);
@@ -33,14 +33,16 @@ function getLocation() {
                     dist = Math.acos(dist);
                     dist = dist * 180 / Math.PI;
                     dist = dist * 60 * 1.1515;
-                    distArray.push(dist);
-                    return distArray.indexOf(Math.min(distArray));
+                   return distArray.push(dist);
+                    
                     
                 })
-                console.log (breweries[getIndexOfClosestBrewery(brewery)].name);
+                const closestBrewery = breweries[distArray.indexOf(Math.min(...distArray))];
+                showBrewery(closestBrewery);
             })
-  
-    })
+            .catch(error => console.log(error)); },
+            error => console.log(error));
+
 }
 
 function findBrewery(input) {
