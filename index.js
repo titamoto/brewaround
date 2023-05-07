@@ -13,6 +13,9 @@ findBreweryForm.addEventListener("submit", (e) => {
 });
 
 function showClosestBrewery() {
+    if (document.getElementsByClassName("card") !== undefined) {
+        Array.from(document.getElementsByClassName("card")).forEach(card => card.remove())
+    }
     navigator.geolocation.getCurrentPosition(position => {
         const userPosition = {
             userLat: position.coords.latitude,
@@ -33,15 +36,16 @@ function showClosestBrewery() {
                     dist = Math.acos(dist);
                     dist = dist * 180 / Math.PI;
                     dist = dist * 60 * 1.1515;
-                   return distArray.push(dist);
-                    
-                    
+                    return distArray.push(dist);
+
+
                 })
                 const closestBrewery = breweries[distArray.indexOf(Math.min(...distArray))];
                 showBrewery(closestBrewery);
             })
-            .catch(error => console.log(error)); },
-            error => console.log(error));
+            .catch(error => console.log(error));
+    },
+        error => console.log(error));
 
 }
 
