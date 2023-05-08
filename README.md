@@ -1,9 +1,11 @@
 # Brewaround
 
-Brewaround is a single-page application for searching breweries. :beers:
+[Brewaround](https://www.titamoto.github.io/brewaround) is a single-page application for searching breweries. :beers:
 The app is based on [Open Brewery DB](https://www.openbrewerydb.org/) API.
 
 ## How to Use
+
+
 
 ## Credits
 
