@@ -3,8 +3,11 @@ const locationButton = document.getElementById("location-button");
 locationButton.addEventListener("click", showClosestBrewery);
 findBreweryForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (document.getElementsByClassName("card") !== undefined) {
-        Array.from(document.getElementsByClassName("card")).forEach(card => card.remove())
+    if (document.getElementsByClassName("card")) {
+        Array.from(document.getElementsByClassName("card")).forEach(card => card.remove());
+        if (document.querySelector("h4")) {
+            document.querySelector("h4").remove();
+        }
     }
     const searchResult = findBrewery(e.target["find-brewery-input"].value);
     searchResult
