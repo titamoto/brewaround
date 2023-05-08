@@ -5,17 +5,21 @@ The app is based on [Open Brewery DB](https://www.openbrewerydb.org/) API.
 
 ## How to Use
 
-Show closest brewery demo:
-![Show closest brewery demo](ShowClosestBrewery.gif)
+- Show closest brewery:
 
-Search by brewery name demo:
-![Search by brewery name demo](SearchByName.gif)
+![Show closest brewery demo](demogifs/showClosestBrewery.gif)
 
-Search by city demo:
-![Search by city demo](SearchByCity.gif)
+- Search by brewery name:
 
-Search by state demo:
-![Search by state demo](SearchByState.gif)
+![Search by brewery name demo](demogifs/searchByName.gif)
+
+- Search by city:
+
+![Search by city demo](demogifs/searchByCity.gif)
+
+- Search by state:
+
+![Search by state demo](demogifs/searchByState.gif)
 
 ## Credits
 
