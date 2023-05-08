@@ -2,12 +2,12 @@
 @import "https://unpkg.com/open-props/normalize.min.css";
 @use postcss-preset-env;
 
-@media (--OSdark) {
+
   html {
     background: var(--gray-9);
     color: var(--gray-1);
   }
-}
+
 
 body {
     display: grid;
