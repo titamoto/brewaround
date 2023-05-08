@@ -20,7 +20,7 @@ body {
 }
 
 button {
-  background: var(--surface-2);
+  background: var(--gray-7);
   min-height: 35px;
   border-radius: 5px;
   /* margin-left: 40px; */
@@ -46,7 +46,7 @@ form {
 }
 
 #submit {
-  background: var(--surface-2);
+  background: var(--gray-7);
   margin-left: 5px;
   min-height: 35px;
   border-radius: 5px;
@@ -85,8 +85,8 @@ main {
     display: flex;
     flex-direction: column;
     gap: var(--size-2);
-    background: var(--surface-2);
-    border: 1px solid var(--surface-1);
+    background: var(--gray-7);
+    border: 1px solid var(--gray-9);
     padding: var(--size-4);
     border-radius: var(--radius-3);
     box-shadow: var(--shadow-2);
