@@ -112,5 +112,5 @@ main {
   }
 
   h1, h4, h5 {
-    color: var(--text-5);
+    color: var(--gray-4);
   }
