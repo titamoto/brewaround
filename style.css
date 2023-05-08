@@ -3,16 +3,16 @@
 @use postcss-preset-env;
 
 
-  html {
-    background: var(--gray-9);
-    color: var(--gray-1);
-  }
+html {
+  background: var(--gray-9);
+  color: var(--gray-1);
+}
 
 
 body {
-    display: grid;
-    place-content: center;
-  }
+  display: grid;
+  place-content: center;
+}
 
 #top {
   place-content: center;
@@ -23,26 +23,19 @@ button {
   background: var(--gray-7);
   min-height: 35px;
   border-radius: 5px;
-  /* margin-left: 40px; */
   margin-bottom: 10px;
   max-width: var(--size-15);
   box-shadow: var(--shadow-2);
-  &:hover {
-    background-color: var(--brown-9);
-    box-shadow: var(--shadow-4);
-  }
-  
 }
 
+button:hover {
+  background-color: var(--brown-9);
+  box-shadow: var(--shadow-4);
+}
 
 #find-brewery-input {
-  
   min-height: 35px;
   border-radius: 5px;
-}
-
-form {
-  /* margin-left: 40px; */
 }
 
 #submit {
@@ -51,66 +44,62 @@ form {
   min-height: 35px;
   border-radius: 5px;
   box-shadow: var(--shadow-2);
-  &:hover {
-    background-color: var(--brown-9);
-    box-shadow: var(--shadow-4);
-  }
-  
+}
+
+#submit:hover {
+  background-color: var(--brown-9);
+  box-shadow: var(--shadow-4);
 }
 
 h1 {
   font-size: var(--font-size-6);
 }
 
-  #radio-buttons {
-    margin-top: 5px;
-  }
+#radio-buttons {
+  margin-top: 5px;
+}
 
-  label {
-    margin-right: 10px;
-  }
+label {
+  margin-right: 10px;
+}
 
 main {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: flex-start;
-    justify-content: space-around;
-    max-inline-size: calc(var(--size-content-1) * 4);
-    gap: var(--size-5);
-    padding: var(--size-5);
-  }
-  
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  max-inline-size: calc(var(--size-content-1) * 4);
+  gap: var(--size-5);
+  padding: var(--size-5);
+}
+
 .card {
-    flex-basis: var(--size-content-1);
-    display: flex;
-    flex-direction: column;
-    gap: var(--size-2);
-    background: var(--gray-7);
-    border: 1px solid var(--gray-9);
-    padding: var(--size-4);
-    border-radius: var(--radius-3);
-    box-shadow: var(--shadow-2);
-    &:hover {
-      box-shadow: var(--shadow-4);
-      background-color: var(--brown-9);
-    }
-  }
+  flex-basis: var(--size-content-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  background: var(--gray-7);
+  border: 1px solid var(--gray-9);
+  padding: var(--size-4);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-2);
+}
 
-  /* a:link {
-    color: var(--cyan-6);
-  }
-  a:visited {
-    color: var(--red-6);
-  } */
+.card:hover {
+  box-shadow: var(--shadow-4);
+  background-color: var(--brown-9);
+}
 
-  .card {
-    animation: var(--animation-fade-in) forwards;
-  }
-  
-.card > h5 {
-    line-height: var(--font-lineheight-1);
-  }
+.card {
+  animation: var(--animation-fade-in) forwards;
+}
 
-  h1, h4, h5 {
-    color: var(--gray-4);
-  }
+.card>h5 {
+  line-height: var(--font-lineheight-1);
+}
+
+h1,
+h4,
+h5 {
+  color: var(--gray-4);
+}
