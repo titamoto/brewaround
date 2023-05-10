@@ -1,14 +1,20 @@
 const findBreweryForm = document.getElementById("find-brewery");
 const locationButton = document.getElementById("location-button");
+
 locationButton.addEventListener("click", showClosestBrewery);
-findBreweryForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+
+function clearResult() {
     if (document.getElementsByClassName("card")) {
         Array.from(document.getElementsByClassName("card")).forEach(card => card.remove());
         if (document.querySelector("h4")) {
             document.querySelector("h4").remove();
         }
     }
+}
+
+findBreweryForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    clearResult();
     const searchResult = findBrewery(e.target["find-brewery-input"].value);
     searchResult
         .then(foundBreweries => { return foundBreweries.forEach(brewery => showBrewery(brewery)) });
@@ -16,12 +22,7 @@ findBreweryForm.addEventListener("submit", (e) => {
 });
 
 function showClosestBrewery() {
-    if (document.getElementsByClassName("card")) {
-        Array.from(document.getElementsByClassName("card")).forEach(card => card.remove());
-        if (document.querySelector("h4")) {
-            document.querySelector("h4").remove();
-        }
-    }
+    clearResult();
     navigator.geolocation.getCurrentPosition(position => {
         const userPosition = {
             userLat: position.coords.latitude,
@@ -73,9 +74,8 @@ function findBrewery(input) {
 }
 
 function showBrewery(brewery) {
-
     const card = document.createElement("div");
-    card.classList.add("card", "loaded");
+    card.className = "card";
     const breweryName = document.createElement("h4");
     breweryName.textContent = brewery.name;
     const city = document.createElement("h5");
