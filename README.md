@@ -5,9 +5,12 @@ The app is based on [Open Brewery DB](https://www.openbrewerydb.org/) API.
 
 ## How to Use
 
-- Show closest brewery:
+Click on 'show me the closest brewery' button to find the closest brewery based on the user's location.</br>
+- Find the closest brewery:
 
 ![Show closest brewery demo](demogifs/showClosestBrewery.gif)
+
+Choose between search by brewery name, city, or state, and click the 'find' button.</br>
 
 - Search by brewery name:
 
